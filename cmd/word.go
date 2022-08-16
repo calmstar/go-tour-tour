@@ -25,9 +25,9 @@ var desc = strings.Join([]string{
 }, "\n")
 
 var wordCmd = &cobra.Command{
-	Use:   "word",
-	Short: "单词格式转换",
-	Long:  "支持多种单词格式转换",
+	Use:   "word",       // 子命令的命令标识。
+	Short: "单词格式转换",     //简短说明，在 help 输出的帮助信息中展示。
+	Long:  "支持多种单词格式转换", // 完整说明，在 help 输出的帮助信息中展示
 	Run: func(cmd *cobra.Command, args []string) {
 		var content string
 		switch mode {
@@ -44,6 +44,7 @@ var wordCmd = &cobra.Command{
 		default:
 			log.Fatalf("暂不支持该转换模式，请执行 help word 查看帮助文档")
 		}
+		log.Printf("输出结果：%s", content)
 	},
 }
 
@@ -51,3 +52,8 @@ func init() {}
 
 var str string
 var mode int8
+
+func init() {
+	wordCmd.Flags().StringVarP(&str, "str", "s", "", "请输入")
+	wordCmd.Flags().Int8VarP(&mode, "mode", "m", 0, "请输入单词转换的模式")
+}

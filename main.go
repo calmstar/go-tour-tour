@@ -1,6 +1,9 @@
 package main
 
-import "log"
+import (
+	"github.com/go-programming-tour-book/tour/cmd"
+	"log"
+)
 
 func main() {
 	err := cmd.Execute()
